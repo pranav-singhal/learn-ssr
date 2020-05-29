@@ -33,7 +33,7 @@ module.exports = {
 
             {
                 test: /\.module\.s([ac])ss$/,
-                loader: [
+                use: [
                     isDevelopment ? 'isomorphic-style-loader' : MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
@@ -53,7 +53,7 @@ module.exports = {
             {
                 test: /\.s([ac])ss$/,
                 exclude: /\.module.(s([ac])ss)$/,
-                loader: [
+                use: [
                     isDevelopment ? 'isomorphic-style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader',
                     {

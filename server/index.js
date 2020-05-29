@@ -10,7 +10,10 @@ const PORT = process.env.PORT || 3006;
 const app = express();
 
 app.use(express.static('./build'));
+
+
 app.get('/*', (req, res) => {
+    console.log(" i got a request")
     const context= {}
     const app = ReactDOMServer.renderToString(
         <StaticRouter location={req.url} context={context}>
@@ -19,6 +22,9 @@ app.get('/*', (req, res) => {
         );
 
 
+
+
+    // console.log("app",app)
     const indexFile = path.resolve('./build/index.html');
     fs.readFile(indexFile, 'utf8', (err, data) => {
         if (err) {
@@ -30,6 +36,7 @@ app.get('/*', (req, res) => {
             data.replace('<div id="root"></div>', `<div id="root">${app}</div>`)
         );
     });
+
 });
 
 app.listen(PORT, () => {
